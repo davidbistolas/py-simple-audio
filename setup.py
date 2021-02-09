@@ -35,11 +35,11 @@ simpleaudio_c_ext = Extension(
 
 # attempt to generate the version from git tag and commit
 
-VERSION = "1.0.4"
+VERSION = "1.0.6b"
 
 # Get the long description from the relevant file
 with open(path.join(path.abspath(path.dirname(__file__)), 'README.rst'),
-          encoding='utf-8') as f:
+          ) as f:
     long_description = f.read()
 
 setup(

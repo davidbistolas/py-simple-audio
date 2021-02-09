@@ -1,3 +1,12 @@
+WARNING
+========
+
+This is an experimental version. It will "work" on MacOS X, but it's being targeted to a specific Linux Project. 
+Don't use it. It's not what you want. 
+
+~ David
+
+
 Simpleaudio Package
 ===================
 

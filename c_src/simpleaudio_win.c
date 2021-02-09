@@ -108,7 +108,7 @@ DWORD WINAPI bufferThread(LPVOID thread_param) {
 }
 
 PyObject* play_os(Py_buffer buffer_obj, int len_samples, int num_channels, int bytes_per_chan,
-                  int sample_rate, play_item_t* play_list_head, int latency_us) {
+                  int sample_rate, play_item_t* play_list_head, int latency_us, char *device) {
     char err_msg_buf[SA_ERR_STR_LEN];
     char sys_msg_buf[SA_ERR_STR_LEN / 2];
     audio_blob_t* audio_blob;

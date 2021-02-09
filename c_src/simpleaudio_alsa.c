@@ -69,7 +69,7 @@ void* playback_thread(void* thread_param) {
 }
 
 PyObject* play_os(Py_buffer buffer_obj, int len_samples, int num_channels, int bytes_per_chan,
-                  int sample_rate, play_item_t* play_list_head, int latency_us) {
+                  int sample_rate, play_item_t* play_list_head, int latency_us, char *device) {
     char err_msg_buf[SA_ERR_STR_LEN];
     audio_blob_t* audio_blob;
     int bytes_per_frame = bytes_per_chan * num_channels;

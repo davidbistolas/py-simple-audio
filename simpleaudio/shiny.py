@@ -9,15 +9,17 @@ import wave
 
 class WaveObject(object):
     def __init__(self, audio_data, num_channels=2, bytes_per_sample=2,
-                 sample_rate=44100):
+                 sample_rate=44100, device="default"):
         self.audio_data = audio_data
         self.num_channels = num_channels
         self.bytes_per_sample = bytes_per_sample
         self.sample_rate = sample_rate
+        self.device = device
 
-    def play(self):
+    def play(self, device="default"):
         return play_buffer(self.audio_data, self.num_channels,
-                           self.bytes_per_sample, self.sample_rate)
+                           self.bytes_per_sample, self.sample_rate,
+                           device)
 
     @classmethod
     def from_wave_file(cls, wave_file):
@@ -30,7 +32,7 @@ class WaveObject(object):
     def from_wave_read(cls, wave_read):
         return cls(wave_read.readframes(wave_read.getnframes()),
                    wave_read.getnchannels(), wave_read.getsampwidth(),
-                   wave_read.getframerate())
+                   wave_read.getframerate(), device="default")
 
     def __str__(self):
         return "Wave Object: {} channel, {} bit, {} Hz".format(
@@ -56,7 +58,6 @@ def stop_all():
     _sa._stop_all()
 
 
-def play_buffer(audio_data, num_channels, bytes_per_sample, sample_rate):
-    play_id = _sa._play_buffer(audio_data, num_channels, bytes_per_sample,
-                               sample_rate)
+def play_buffer(audio_data, num_channels, bytes_per_sample, sample_rate, device):
+    play_id = _sa._play_buffer(audio_data, num_channels, bytes_per_sample, sample_rate, device)
     return PlayObject(play_id)

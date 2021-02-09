@@ -113,10 +113,11 @@ static PyObject* _play_buffer(PyObject *self, PyObject *args)
     int bytes_per_channel;
     int sample_rate;
     int num_samples;
+    char *device;
 
     dbg1("_play_buffer call\n");
 
-    if (!PyArg_ParseTuple(args, "Oiii", &audio_obj, &num_channels, &bytes_per_channel, &sample_rate)) {
+    if (!PyArg_ParseTuple(args, "Oiiis", &audio_obj, &num_channels, &bytes_per_channel, &sample_rate,  &device)) {
         return NULL;
     }
 
@@ -164,7 +165,7 @@ static PyObject* _play_buffer(PyObject *self, PyObject *args)
     PyEval_InitThreads();
 
     /* fixed 100ms latency */
-    return play_os(buffer_obj, num_samples, num_channels, bytes_per_channel, sample_rate, &play_list_head, SA_LATENCY_US);
+    return play_os(buffer_obj, num_samples, num_channels, bytes_per_channel, sample_rate, &play_list_head, SA_LATENCY_US, device);
 }
 
 static PyMethodDef _simpleaudio_methods[] = {
